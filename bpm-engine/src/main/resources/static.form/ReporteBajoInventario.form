@@ -1,0 +1,33 @@
+{
+  "components": [
+    {
+      "label": "Id de estante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_08szrcf",
+        "columns": null
+      },
+      "id": "Field_1y03gon",
+      "key": "idEstante"
+    },
+    {
+      "label": "Numero actuales de piezas",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1lqjusi",
+        "columns": null
+      },
+      "id": "Field_0ufejt8",
+      "key": "numeroPiezas"
+    }
+  ],
+  "type": "default",
+  "id": "ReporteBajoInventario",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 18
+}
