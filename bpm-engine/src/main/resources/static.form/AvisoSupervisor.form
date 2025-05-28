@@ -1,0 +1,34 @@
+{
+  "components": [
+    {
+      "label": "Identificación de linea del incidente",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_08zqskx",
+        "columns": null
+      },
+      "id": "Field_072q0gf",
+      "key": "idLinea",
+      "disabled": true
+    },
+    {
+      "label": "Hora del incidente",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1p6oqjv",
+        "columns": null
+      },
+      "id": "Field_02mmeab",
+      "key": "horaAlerta"
+    }
+  ],
+  "type": "default",
+  "id": "AvisoSupervisor",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 18
+}
