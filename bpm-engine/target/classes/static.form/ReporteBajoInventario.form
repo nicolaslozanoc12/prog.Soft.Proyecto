@@ -1,31 +1,28 @@
 {
   "components": [
     {
-      "label": "Identificación de linea del incidente",
+      "label": "Id de estante",
       "type": "textfield",
       "layout": {
-        "row": "Row_08zqskx",
+        "row": "Row_08szrcf",
         "columns": null
       },
-      "id": "Field_072q0gf",
-      "key": "idLinea",
-      "disabled": true
+      "id": "Field_1y03gon",
+      "key": "idEstante"
     },
     {
-      "label": "Hora del incidente",
+      "label": "Numero actuales de piezas",
       "type": "textfield",
       "layout": {
-        "row": "Row_1p6oqjv",
+        "row": "Row_1lqjusi",
         "columns": null
       },
-      "id": "Field_02mmeab",
-      "key": "horaAlerta",
-      "readonly": true,
-      "disabled": true
+      "id": "Field_0ufejt8",
+      "key": "numeroPiezas"
     }
   ],
   "type": "default",
-  "id": "AvisoSupervisor",
+  "id": "ReporteBajoInventario",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.33.1"

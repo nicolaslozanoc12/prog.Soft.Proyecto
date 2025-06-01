@@ -21,16 +21,20 @@ public class EstadoLineaService {
                 })
                 .orElse(null);
     }
-    public EstadoLinea turnOffEstadoLinea(Long id, Boolean encendido) {
+    public EstadoLinea modifyEstadoLinea(Long id, Boolean encendido) {
         return estadoLineaRepository.findById(id)
                 .map(estadoLinea -> {
                     if (estadoLinea.getEncendido() != null && estadoLinea.getEncendido()) {
+                        estadoLinea.setContador(estadoLinea.getContador() + 1)  ; // Incrementa el contador si estaba encendido
                         estadoLinea.setEncendido(encendido); // Cambia el estado a apagado
                         System.out.println("Cambiando estado de la línea " + estadoLinea.getNombre() + " (ID: " + estadoLinea.getIdLinea() + ") a APAGADO.");
                         return estadoLineaRepository.save(estadoLinea);
                     } else {
-                        estadoLinea.setEncendido(encendido); // Cambia el estado a apagado
-                        System.out.println("Cambiando estado de la línea " + estadoLinea.getNombre() + " (ID: " + estadoLinea.getIdLinea() + ") a ENCENDIDO.");
+                        estadoLinea.setContador(estadoLinea.getContador() - 1)  ;
+                        if (estadoLinea.getContador() ==0) {
+                            estadoLinea.setEncendido(encendido); // Cambia el estado a apagado
+                            System.out.println("Cambiando estado de la línea " + estadoLinea.getNombre() + " (ID: " + estadoLinea.getIdLinea() + ") a ENCENDIDO.");    
+                        }
                         return estadoLineaRepository.save(estadoLinea);
                     }
 

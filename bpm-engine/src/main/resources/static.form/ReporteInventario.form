@@ -1,0 +1,67 @@
+{
+  "components": [
+    {
+      "label": "Identificador de Linea",
+      "type": "number",
+      "layout": {
+        "row": "Row_0wg5fia",
+        "columns": null
+      },
+      "id": "Field_0n4m66c",
+      "key": "idLinea",
+      "decimalDigits": 0
+    },
+    {
+      "label": "Identificador de estanteria",
+      "type": "number",
+      "layout": {
+        "row": "Row_1oesiuc",
+        "columns": null
+      },
+      "id": "Field_178f5qm",
+      "key": "idEstanteria",
+      "decimalDigits": 0
+    },
+    {
+      "label": "identificador de pieza",
+      "type": "number",
+      "layout": {
+        "row": "Row_01e3cjh",
+        "columns": null
+      },
+      "id": "Field_0bikprf",
+      "key": "idPieza"
+    },
+    {
+      "label": "Cantidad de piezas maxima",
+      "type": "number",
+      "layout": {
+        "row": "Row_03dx96v",
+        "columns": null
+      },
+      "id": "Field_06l1h1k",
+      "key": "maxPiezas",
+      "decimalDigits": 0
+    },
+    {
+      "label": "Cantidad de piezas actuales",
+      "type": "number",
+      "layout": {
+        "row": "Row_1uz8wfu",
+        "columns": null
+      },
+      "id": "Field_1yjvree",
+      "key": "piezasActuales",
+      "decimalDigits": 0
+    }
+  ],
+  "type": "default",
+  "id": "ReporteInventario",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 18
+}

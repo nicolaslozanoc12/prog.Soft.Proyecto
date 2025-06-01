@@ -9,8 +9,12 @@ public class EstadoLinea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idLinea;
+    private Long idLinea;
+    @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
+    @Column(name = "contador")
+    private int contador;
+    @Column(name = "encendido")
     private Boolean encendido;
 
     // Constructor vacío
@@ -25,11 +29,11 @@ public class EstadoLinea {
 
     // Getters y Setters para todos los campos
 
-    public Integer getIdLinea() {
+    public Long getIdLinea() {
         return idLinea;
     }
 
-    public void setIdLinea(Integer idLinea) {
+    public void setIdLinea(Long idLinea) {
         this.idLinea = idLinea;
     }
 
@@ -49,13 +53,11 @@ public class EstadoLinea {
         this.encendido = encendido;
     }
 
-    @Override
-    public String toString() {
-        return "EstadoLineaService{" +
-                "idLinea=" + idLinea +
-                ", nombre='" + nombre + '\'' +
-                ", encendido=" + encendido +
-                '}';
+    public int getContador() {
+        return contador;
+    }
+    public void setContador(int contador) {
+        this.contador = contador;
     }
 
 }

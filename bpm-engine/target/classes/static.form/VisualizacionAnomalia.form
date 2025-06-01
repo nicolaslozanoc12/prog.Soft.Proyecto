@@ -1,0 +1,76 @@
+{
+  "components": [
+    {
+      "label": "Metodo de hallazgo de anomalia:",
+      "values": [
+        {
+          "label": "inspeccion",
+          "value": "inspeccion"
+        },
+        {
+          "label": "operario",
+          "value": "operario"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_1adxtas",
+        "columns": null
+      },
+      "id": "Field_0o222fk",
+      "key": "metodoAnomalia",
+      "readonly": true,
+      "disabled": true
+    },
+    {
+      "label": "id de maquinaria con la anomalia",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1bmgwz0",
+        "columns": null
+      },
+      "id": "Field_1soee26",
+      "key": "idMaquinaria",
+      "readonly": true,
+      "disabled": true
+    },
+    {
+      "subtype": "datetime",
+      "dateLabel": "Fecha",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0hknik5",
+        "columns": null
+      },
+      "id": "Field_0qrqzgf",
+      "key": "fechaHoraHallazgoAnomalia",
+      "timeLabel": "Hora",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 15,
+      "description": "Ingrese la fecha y hora del hallazgo de la anomalia",
+      "use24h": true,
+      "readonly": true,
+      "disabled": true
+    },
+    {
+      "label": "Descripción de anomalia",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0cihsm6",
+        "columns": null
+      },
+      "id": "Field_1bwpcy6",
+      "key": "descripcionAnomalia",
+      "disabled": true
+    }
+  ],
+  "type": "default",
+  "id": "VisualizacionAnomalia",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 18
+}
