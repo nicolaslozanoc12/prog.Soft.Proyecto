@@ -42,7 +42,7 @@
     <bpmn:userTask id="Activity_0eang1m" name="Crear Solicitud de insumo">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="idProvedor" label="Identificador del provedor" type="long" />
+          <camunda:formField id="idPieza" label="Identificador del provedor" type="long" />
           <camunda:formField id="cantidadLlegada" label="Cantidad de piezas a pedir" type="long" />
         </camunda:formData>
       </bpmn:extensionElements>

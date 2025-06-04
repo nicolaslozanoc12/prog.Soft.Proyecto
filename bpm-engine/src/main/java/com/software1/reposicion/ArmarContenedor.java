@@ -14,11 +14,11 @@ public class ArmarContenedor  implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        Long idLinea = (Long) execution.getVariable("idLinea");
-        Long idEstanteria = (Long) execution.getVariable("idEstanteria");
-        Long idPieza = (Long) execution.getVariable("idPieza");
-        Long maxPiezas = (Long) execution.getVariable("maxPiezas");
-        Long piezasActuales = (Long) execution.getVariable("piezasActuales");
+        Long idLinea = ((Number) execution.getVariable("idLinea")).longValue();
+        Long idEstanteria = ((Number) execution.getVariable("idEstanteria")).longValue();
+        Long idPieza = ((Number) execution.getVariable("idPieza")).longValue();
+        Long maxPiezas = ((Number) execution.getVariable("maxPiezas")).longValue();
+        Long piezasActuales = ((Number) execution.getVariable("piezasActuales")).longValue();
 
         int piezasFaltantes = Math.toIntExact(maxPiezas) - Math.toIntExact(piezasActuales);
 
