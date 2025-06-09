@@ -83,7 +83,10 @@
     <bpmn:userTask id="Activity_10qh67s" name="Verificar nivel de inventario">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="tipoReposicion" label="¿tipo reposicion &#34;interna&#34; o &#34;externa&#34;?" type="string" />
+          <camunda:formField id="tipoReposicion" label="¿tipo reposicion interna o externa? &#39;interno&#39; o &#39;externo&#39;" type="string">
+            <camunda:properties />
+            <camunda:validation />
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ei0xu1</bpmn:incoming>

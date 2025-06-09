@@ -1,0 +1,28 @@
+<div class="card shadow-sm" style="background-color: lightgrey;" th:fragment="reporteInventario">
+    <div class="card-body">
+        <h2 class="card-title mb-4">Reporte de Inventario</h2>
+        <form method="post" th:action="@{/form/inventario}">
+            <div class="mb-3">
+                <label for="linea" class="form-label">Identificador de Línea</label>
+                <input type="text" class="form-control" id="linea" name="linea" required>
+            </div>
+            <div class="mb-3">
+                <label for="estanteria" class="form-label">Identificador de Estantería</label>
+                <input type="text" class="form-control" id="estanteria" name="estanteria" required>
+            </div>
+            <div class="mb-3">
+                <label for="pieza" class="form-label">Identificador de Pieza</label>
+                <input type="text" class="form-control" id="pieza" name="pieza" required>
+            </div>
+            <div class="mb-3">
+                <label for="maxima" class="form-label">Cantidad de Piezas Máxima</label>
+                <input type="number" class="form-control" id="maxima" name="maxima" required>
+            </div>
+            <div class="mb-3">
+                <label for="actuales" class="form-label">Cantidad de Piezas Actuales</label>
+                <input type="number" class="form-control" id="actuales" name="actuales" required>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+</div>
