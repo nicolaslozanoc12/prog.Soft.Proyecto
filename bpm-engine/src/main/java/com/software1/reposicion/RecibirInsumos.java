@@ -1,9 +1,6 @@
 package com.software1.reposicion;
 
-import com.software1.models.Bodega;
-import com.software1.models.IncidenteCalidad;
 import com.software1.services.BodegaService;
-import com.software1.services.IncidenteCalidadService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;

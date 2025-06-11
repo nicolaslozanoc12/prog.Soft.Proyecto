@@ -17,7 +17,7 @@ public class DetenerLinea implements JavaDelegate {
     }
     @Override
     public void execute(DelegateExecution execution) {
-        Long idLinea = (Long) execution.getVariable("idLinea");;
+        Long idLinea = (Long) execution.getVariable("idLinea");
         boolean encendido = false;
         estadoLineaService.modifyEstadoLinea(idLinea, encendido);
 

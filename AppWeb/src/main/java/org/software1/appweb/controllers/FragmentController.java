@@ -21,4 +21,5 @@ public class FragmentController {
         return "fragment/reporteInventario :: reporteInventario";
     }
 
+
 }
