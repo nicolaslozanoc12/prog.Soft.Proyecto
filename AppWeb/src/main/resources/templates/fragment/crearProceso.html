@@ -1,0 +1,17 @@
+<div class="card shadow-sm mt-4" style="background-color: #f8f9fa;" th:fragment="crearProceso">
+    <div class="card-body">
+        <h2 class="card-title mb-4">Iniciar un Proceso</h2>
+        <form method="post" action="/process/start">
+            <div class="mb-3">
+                <label for="processKey" class="form-label">Selecciona un proceso</label>
+                <select class="form-select" id="processKey" name="processKey" required>
+                    <option value="" disabled selected>-- Elige un proceso --</option>
+                    <option value="ControlCalidad">Control de Calidad</option>
+                    <option value="InspeccionAnomalia">Inspección de Anomalía</option>
+                    <option value="ReposicionInventario">Reposición de Inventario</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Iniciar Proceso</button>
+        </form>
+    </div>
+</div>

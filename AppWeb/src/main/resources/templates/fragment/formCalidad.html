@@ -1,0 +1,19 @@
+<div   class="card shadow-sm" style="background-color: lightgrey;" th:fragment="formCalidad">
+    <div class="card-body">
+        <h2 class="card-title mb-4">Hallazgo de Anomalía</h2>
+        <form method="post" th:action="@{/form/hallazgo}">
+            <div class="mb-3">
+                <label for="idLinea" class="form-label">ID de Maquinaria</label>
+                <input type="text" class="form-control" id="idLinea" name="idLinea" required>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <label for="hora" class="form-label">Hora de reporte</label>
+                    <input type="time" class="form-control" id="hora" name="hora" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</div>

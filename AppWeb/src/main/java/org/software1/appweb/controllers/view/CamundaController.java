@@ -23,21 +23,27 @@ public class CamundaController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("tasks", camundaService.getTasks());
-        return "home";
+        return "index";
     }
 
-    @PostMapping("/iniciar")
+    /*@PostMapping("/iniciar")
     public String iniciar() {
         Map<String, Object> variables = Map.of("solicitante", "cliente1");
         return camundaService.iniciarProceso("ProcesoGestionInsumos", variables);
-    }
+    }*/
 
     @GetMapping("/task/{id}")
     public String showForm(@PathVariable String id, Model model) {
+        // Obtener las variables del formulario para esta tarea específica
         Map<String, Object> formVariables = camundaService.getFormVariables(id);
         model.addAttribute("taskId", id);
-        model.addAttribute("formVariables", camundaService.obtenerTareas(id));
-        return "formulario-tipo"; // Thymeleaf + Bootstrap
+        model.addAttribute("formVariables", formVariables);
+
+        // Obtener información de la tarea
+        Map<String, Object> taskInfo = camundaService.getTaskInfo(id);
+        model.addAttribute("taskInfo", taskInfo);
+
+        return "fragment/formulario-tipo"; // Vista genérica para formularios
     }
 
     @PostMapping("/task/{id}/complete")

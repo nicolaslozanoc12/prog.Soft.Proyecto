@@ -1,14 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Formulario</title></head>
 <body>
-<h2>Formulario de tarea</h2>
-<form th:action="@{|/task/${taskId}/complete|}" method="post">
-  <div th:each="entry : ${formVariables}">
-    <label th:text="${entry.key}"></label>
-    <input type="text" th:name="${entry.key}"  th:value="${entry.value.value}"/><br/>
-  </div>
-  <button type="submit">Completar</button>
-</form>
+<div th:fragment="formulario-dinamico">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title mb-4" th:text="${taskInfo.name}">
+                <i class="fas fa-file-alt me-2"></i>
+            </h3>
+
+            <form th:action="@{|/task/${taskId}/complete|}" method="post" class="needs-validation" novalidate>
+                <div class="mb-3" th:each="entry : ${formVariables}">
+                    <label th:for="${entry.key}" class="form-label fw-bold" th:text="${entry.key}"></label>
+
+                    <!-- Campo tipo fecha -->
+                    <input th:if="${entry.value['type'] == 'Date'}"
+                           th:id="${entry.key}"
+                           type="date"
+                           class="form-control"
+                           th:name="${entry.key}"
+                           th:value="${entry.value['value']}"
+                           required/>
+
+                    <!-- Campo tipo hora -->
+                    <input th:if="${entry.value['type'] == 'Time'}"
+                           th:id="${entry.key}"
+                           type="time"
+                           class="form-control"
+                           th:name="${entry.key}"
+                           th:value="${entry.value['value']}"
+                           required/>
+
+                    <!-- Campo tipo checkbox -->
+                    <div th:if="${entry.value['type'] == 'Boolean'}" class="form-check">
+                        <input th:id="${entry.key}"
+                               type="checkbox"
+                               class="form-check-input"
+                               th:name="${entry.key}"
+                               th:checked="${entry.value['value']}"
+                               value="true"/>
+                    </div>
+
+                    <!-- Campo tipo número -->
+                    <input th:if="${entry.value['type'] == 'Integer' || entry.value['type'] == 'Long' || entry.value['type'] == 'Double'}"
+                           th:id="${entry.key}"
+                           type="number"
+                           class="form-control"
+                           th:name="${entry.key}"
+                           th:value="${entry.value['value']}"
+                           required/>
+
+                    <!-- Campo tipo texto por defecto -->
+                    <input th:if="${entry.value['type'] == 'String'}"
+                           th:id="${entry.key}"
+                           type="text"
+                           class="form-control"
+                           th:name="${entry.key}"
+                           th:value="${entry.value['value']}"
+                           required/>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-check me-2"></i>Completar Tarea
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

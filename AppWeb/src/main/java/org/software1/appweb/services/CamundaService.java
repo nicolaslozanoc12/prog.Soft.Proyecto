@@ -29,23 +29,20 @@ public class CamundaService {
     }
 
     // Iniciar proceso
-    public String iniciarProceso(String keyProceso, Map<String, Object> variables) {
+    public String iniciarProceso(String keyProceso) {
         String url = camundaApiUrl + "/process-definition/key/" + keyProceso + "/start";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        String body = """
-        {
-            "variables": %s
-        }
-        """.formatted(toCamundaJsonVariables(variables));
+        String body = "{}"; // Sin variables
 
         HttpEntity<String> request = new HttpEntity<>(body, headers);
         ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
 
         return response.getBody();
     }
+
     public List<Map<String, Object>> getTasks() {
         String url = camundaApiUrl + "/task";
         ResponseEntity<List> response = restTemplate.getForEntity(url, List.class);
@@ -71,6 +68,10 @@ public class CamundaService {
         """.formatted(userId);
 
         restTemplate.postForEntity(url, new HttpEntity<>(body, headers), String.class);
+    }
+    public Map<String, Object> getTaskInfo(String taskId) {
+        String url = camundaApiUrl + "/task/" + taskId;
+        return restTemplate.getForObject(url, Map.class);
     }
 
     // Completar tarea
@@ -98,7 +99,7 @@ public class CamundaService {
         sb.append("}");
         return sb.toString();
     }
-    public Map<String, Object> getFormVariables(String taskId) {
+    public Map getFormVariables(String taskId) {
         String url = camundaApiUrl + "/task/" + taskId + "/form-variables";
         return restTemplate.getForObject(url, Map.class);
     }

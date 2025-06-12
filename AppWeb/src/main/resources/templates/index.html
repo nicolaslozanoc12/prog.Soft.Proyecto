@@ -89,12 +89,16 @@
 
         <a href="#" onclick="toggleSubmenu('submenu2')">Control de Calidad</a>
         <div id="submenu2" class="submenu">
-            <a href="#" onclick="loadFragment('/fragment/control-calidad', 'main-content')">Formulario</a>
+            <a href="#" onclick="loadFragment('/fragment/formCalidad', 'main-content')">Formulario</a>
         </div>
 
         <a href="#" onclick="toggleSubmenu('submenu3')">Reporte Inventario</a>
         <div id="submenu3" class="submenu">
             <a href="#" onclick="loadFragment('/fragment/reporte-inventario', 'main-content')">Formulario</a>
+        </div>
+        <a href="#" onclick="toggleSubmenu('submenu4')">Procesos iniciados</a>
+        <div id="submenu4" class="submenu">
+            <a href="#" onclick="loadFragment('/fragment/procesos', 'main-content')">Formulario</a>
         </div>
     </div>
 
@@ -104,6 +108,8 @@
         <div id="bienvenida">
             <h1>Bienvenido</h1>
             <p>Selecciona una opción del menú para continuar.</p>
+            <a href="#" onclick="loadFragment('/fragment/crearProceso', 'main-content')">Crear Proceso</a>
+
         </div>
     </div>
 </div>
