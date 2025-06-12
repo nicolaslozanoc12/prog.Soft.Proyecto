@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Procesos</title></head>
+<body>
+<h2>Iniciar proceso</h2>
+<form action="/start" method="post">
+    <input name="processKey" placeholder="clave proceso (ej: test_proceso)"/>
+    <button type="submit">Iniciar</button>
+</form>
+
+<h2>Tareas pendientes</h2>
+<ul>
+    <li th:each="task : ${tasks}">
+        <a th:href="@{|/task/${task.id}|}" th:text="${task.name}">Ver tarea</a>
+    </li>
+</ul>
+</body>
+</html>

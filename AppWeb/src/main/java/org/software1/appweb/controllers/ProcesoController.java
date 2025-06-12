@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+/*
 @Controller
 public class ProcesoController {
 
@@ -15,9 +15,9 @@ public class ProcesoController {
 
     @GetMapping("/iniciar-proceso")
     public String iniciarProceso(Model model) {
-        String respuesta = camundaService.iniciarProceso("ControlCalidad"); // usa el ID de tu BPMN
-        model.addAttribute("mensaje", respuesta);
-        return "resultado";
+        String resultado = camundaService.iniciarProceso("Control Calidad"); // usa el ID de tu BPMN
+        model.addAttribute("mensaje", resultado);
+        return "home";
     }
 
     @GetMapping("/")
@@ -25,3 +25,4 @@ public class ProcesoController {
         return "index"; // Página de inicio
     }
 }
+*/

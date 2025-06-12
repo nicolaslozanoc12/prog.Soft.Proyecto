@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Formulario</title></head>
+<body>
+<h2>Formulario de tarea</h2>
+<form th:action="@{|/task/${taskId}/complete|}" method="post">
+  <div th:each="entry : ${formVariables}">
+    <label th:text="${entry.key}"></label>
+    <input type="text" th:name="${entry.key}"  th:value="${entry.value.value}"/><br/>
+  </div>
+  <button type="submit">Completar</button>
+</form>
+</body>
+</html>
