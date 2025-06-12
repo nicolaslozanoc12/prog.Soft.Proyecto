@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>1. Inspeccionar Producto Defectuoso</h3>
+	<p><b>ID Línea:</b> <span th:text="${variables.idLinea.value}"></span></p>
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+		<label >realizar inspeccion del producto</label><br>
+		<input type="radio" id="inspeccionProducto" name="inspeccionProducto" value="true" required>
+		<label for="inspeccionProducto">Sí</label><br>
+
+		<button type="submit">Siguiente</button>
+	</form>
+</div>
+</body>
+</html>

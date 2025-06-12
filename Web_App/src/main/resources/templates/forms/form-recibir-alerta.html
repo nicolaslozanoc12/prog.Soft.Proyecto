@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>Revisar Alerta de Producción</h3>
+	<p>Por favor, revise la siguiente información y confirme la recepción para continuar con el proceso.</p>
+
+	<h4>Detalles de la Alerta:</h4>
+	<ul>
+		<li><b>ID de la Línea:</b> <span th:text="${variables.idLinea.value}"></span></li>
+		<li><b>Hora de la Alerta:</b> <span th:text="${variables.horaAlerta.value}"></span></li>
+	</ul>
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+		<button type="submit">Confirmar y Completar Tarea</button>
+	</form>
+</div>
+</body>
+</html>

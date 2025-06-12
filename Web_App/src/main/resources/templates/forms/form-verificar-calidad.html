@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>4. Verificar Calidad Final</h3>
+	<p><b>Acción Correctiva Propuesta:</b> <span th:text="${variables.accionCorrectiva.value}"></span></p>
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+
+		<label>¿El producto cumple los estándares de calidad?</label><br>
+		<input type="radio" id="calidadSi" name="calidad" value="true" required>
+		<label for="calidadSi">Sí</label><br>
+		<input type="radio" id="calidadNo" name="calidad" value="false">
+		<label for="calidadNo">No</label><br><br>
+
+		<button type="submit">Finalizar Verificación</button>
+	</form>
+</div>
+</body>
+</html>

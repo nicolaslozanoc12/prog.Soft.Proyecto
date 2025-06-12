@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>2. Determinar Causa Raíz</h3>
+	<p><b>Proceso para ID de Línea:</b> <span th:text="${variables.idLinea.value}"></span></p>
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+
+		<label for="causaRaiz">Causa Raíz Determinada:</label><br>
+		<textarea id="causaRaiz" name="causaRaiz" rows="4" cols="50" required></textarea><br><br>
+
+		<button type="submit">Siguiente</button>
+	</form>
+</div>
+</body>
+</html>

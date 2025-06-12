@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>3. Establecer Acción Correctiva</h3>
+	<p><b>Causa Raíz:</b> <span th:text="${variables.causaRaiz.value}"></span></p>
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+
+		<label for="accionCorrectiva">Acción Correctiva a Implementar:</label><br>
+		<textarea id="accionCorrectiva" name="accionCorrectiva" rows="4" cols="50" required></textarea><br><br>
+
+		<button type="submit">Siguiente</button>
+	</form>
+</div>
+</body>
+</html>

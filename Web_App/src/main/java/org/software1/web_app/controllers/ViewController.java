@@ -81,51 +81,66 @@ import java.util.Map;
         @GetMapping("/tarea/{taskId}/form")
         public String showTaskForm(@PathVariable String taskId, Model model,
                                    @RequestParam String groupName, @RequestParam String processKey) {
-            // 1. Pide los detalles de la tarea a Camunda
+            // 1. Obtenemos los detalles de la tarea (como antes)
             Map<String, Object> taskDetails = camundaService.getTaskDetails(taskId);
             String formKey = (String) taskDetails.get("formKey");
 
-            // 2. Intenta obtener la "Form Key" de la tarea
+            if (formKey == null || formKey.isEmpty()) {
+                model.addAttribute("error", "La tarea no tiene un formulario asociado.");
+                return "error-page";
+            }
 
+            // 2. ¡NUEVO! Obtenemos las variables de la tarea
             Map<String, Object> variables = camundaService.getTaskVariables(taskId);
 
+            // 3. Pasamos todo a la vista del formulario
             model.addAttribute("taskId", taskId);
             model.addAttribute("taskDetails", taskDetails);
             model.addAttribute("groupName", groupName);
             model.addAttribute("processKey", processKey);
             model.addAttribute("variables", variables); // <-- Pasamos las variables
 
-            // 3. ¡AQUÍ ESTÁ LA CLAVE!
-            // Si la tarea en Camunda NO TIENE una "Form Key" definida,
-            // formKey será nulo y el código intentará mostrar la página de error.
-            if (formKey == null || formKey.isEmpty()) {
-                model.addAttribute("error", "La tarea no tiene un formulario asociado.");
-                return "error-page"; // <-- Esto es lo que causa tu error
-            }
-
-            // Si todo va bien, devuelve el formulario correcto
+            // 4. Devolvemos la vista que coincide con el nombre de la Form Key
             return "forms/" + formKey;
         }
 
-        // Procesa el envío del formulario de la tarea
         @PostMapping("/tarea/{taskId}/completar")
-        public String completeTask(@PathVariable String taskId,
-                                   @RequestParam String horaAlerta,
-                                   @RequestParam Long idLinea,
-                                   @RequestParam String groupName,
-                                   @RequestParam String processKey) {
+        public String completeGenericTask(@PathVariable String taskId,
+                                          @RequestParam Map<String, String> formVariables) {
 
-            // 1. Preparamos las variables del formulario para enviarlas a Camunda.
-            // Estos datos se añadirán al contexto del proceso.
-            Map<String, Object> variables = new HashMap<>();
-            variables.put("horaAlerta", Map.of("value", horaAlerta));
-            variables.put("idLinea", Map.of("value", idLinea));
+            // Extraemos los datos de redirección
+            String groupName = formVariables.remove("groupName");
+            String processKey = formVariables.remove("processKey");
 
-            // 2. Llamamos al servicio para completar la tarea con sus variables.
-            // Camunda ahora avanzará a la siguiente tarea (la que ejecuta RegistroIncidente.java).
-            camundaService.completeTask(taskId, variables);
+            Map<String, Object> camundaVariables = new HashMap<>();
 
-            // 3. Redirigimos al dashboard para que el usuario vea la lista de tareas actualizada.
+            // Iteramos sobre el resto de las variables del formulario
+            for (Map.Entry<String, String> entry : formVariables.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                Object convertedValue = value; // Por defecto, es un String
+
+                // --- INICIO DE LA NUEVA LÓGICA INTELIGENTE ---
+                try {
+                    // Intenta convertir el valor a un Long
+                    convertedValue = Long.parseLong(value);
+                } catch (NumberFormatException e1) {
+                    // Si falla, intenta convertirlo a un Boolean (para los gateways)
+                    if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
+                        convertedValue = Boolean.parseBoolean(value);
+                    }
+                    // Si todo falla, se queda como el String original
+                }
+                // --- FIN DE LA NUEVA LÓGICA ---
+
+                // Añadimos la variable al mapa con su tipo correcto
+                camundaVariables.put(key, Map.of("value", convertedValue));
+            }
+
+            // Llamamos al servicio para completar la tarea
+            camundaService.completeTask(taskId, camundaVariables);
+
+            // Redirigimos al dashboard
             return "redirect:/rol/" + groupName + "/dashboard?processKey=" + processKey;
         }
 
