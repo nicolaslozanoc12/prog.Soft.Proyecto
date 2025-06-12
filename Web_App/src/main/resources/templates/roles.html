@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Seleccionar Rol</title>
+</head>
+<body>
+<h1 th:text="'Proceso: ' + ${processKey}">Proceso</h1>
+<h2>Seleccione su rol para continuar</h2>
+<ul>
+	<li><a th:href="@{/rol/operadorLinea/dashboard(processKey=${processKey})}">Operador de Línea</a></li>
+	<li><a th:href="@{/rol/supervisorProduccion/dashboard(processKey=${processKey})}">Supervisor de Producción</a></li>
+	<li><a th:href="@{/rol/equipoCalidad/dashboard(processKey=${processKey})}">Equipo de Calidad</a></li>
+</ul>
+</body>
+</html>

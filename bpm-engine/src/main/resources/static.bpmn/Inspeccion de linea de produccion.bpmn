@@ -6,16 +6,17 @@
   <bpmn:process id="InspeccionAnomalia" isExecutable="true" camunda:historyTimeToLive="3">
     <bpmn:laneSet id="LaneSet_0tj0oz9">
       <bpmn:lane id="Lane_1dmcwsf" name="Operador de línea">
+        <bpmn:extensionElements />
         <bpmn:flowNodeRef>Event_1y8jd33</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0n3roep</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1sk6ge8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_17shr7c</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1sk6ge8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0n3roep</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1toyofi" name="Supervisor de Producción">
-        <bpmn:flowNodeRef>Event_0qjar9b</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_10mywip</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1jr66av</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1odudnt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1jr66av</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_10mywip</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0qjar9b</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1vo6a3a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1hdy1a8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_09xl6ex</bpmn:flowNodeRef>
@@ -29,105 +30,48 @@
         <bpmn:flowNodeRef>Activity_1h7rfvn</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
+    <bpmn:sequenceFlow id="Flow_1u1it1e" sourceRef="Gateway_01alcfr" targetRef="Event_1vta700" />
+    <bpmn:sequenceFlow id="Flow_0ontmnl" sourceRef="Activity_06sq6bi" targetRef="Gateway_01alcfr" />
     <bpmn:sequenceFlow id="Flow_0aj4d2y" sourceRef="Gateway_0hl4khl" targetRef="Activity_1h7rfvn" />
-    <bpmn:sequenceFlow id="Flow_0lc4qje" sourceRef="Activity_1odudnt" targetRef="Activity_1jr66av" />
-    <bpmn:sequenceFlow id="Flow_0sv5l9o" name="no" sourceRef="Gateway_09xl6ex" targetRef="Gateway_0hl4khl">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${verificarSolucion == false }</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0dbnnbm" name="si" sourceRef="Gateway_09xl6ex" targetRef="Activity_06sq6bi">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${verificarSolucion == true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1u1it1e" sourceRef="Gateway_01alcfr" targetRef="Event_1vta700" />
-    <bpmn:sequenceFlow id="Flow_0ontmnl" sourceRef="Activity_06sq6bi" targetRef="Gateway_01alcfr" />
+    <bpmn:sequenceFlow id="Flow_0sv5l9o" name="no" sourceRef="Gateway_09xl6ex" targetRef="Gateway_0hl4khl">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${verificarSolucion == false }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0q3n8un" sourceRef="Activity_1hdy1a8" targetRef="Gateway_09xl6ex" />
     <bpmn:sequenceFlow id="Flow_1obv2l7" sourceRef="Activity_1h7rfvn" targetRef="Activity_1hdy1a8" />
-    <bpmn:sequenceFlow id="Flow_12f94my" sourceRef="Activity_1jr66av" targetRef="Gateway_10mywip" />
-    <bpmn:sequenceFlow id="Flow_12zvbp4" sourceRef="Gateway_1vo6a3a" targetRef="Gateway_01alcfr" />
     <bpmn:sequenceFlow id="Flow_1vre2hn" sourceRef="Gateway_1vo6a3a" targetRef="Gateway_0hl4khl" />
-    <bpmn:sequenceFlow id="Flow_1obl9j6" name="Si" sourceRef="Gateway_10mywip" targetRef="Activity_1hl2wkp">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riesgoAnomalia == true}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0kl07po" name="No" sourceRef="Gateway_10mywip" targetRef="Event_0qjar9b">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riesgoAnomalia == false}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1ic9f8h" sourceRef="Event_17shr7c" targetRef="Gateway_1sk6ge8" />
-    <bpmn:sequenceFlow id="Flow_0jcgvw0" sourceRef="Activity_0n3roep" targetRef="Activity_1odudnt" />
+    <bpmn:sequenceFlow id="Flow_12zvbp4" sourceRef="Gateway_1vo6a3a" targetRef="Gateway_01alcfr" />
+    <bpmn:sequenceFlow id="Flow_1qaeia3" sourceRef="Activity_1hl2wkp" targetRef="Gateway_1vo6a3a" />
     <bpmn:sequenceFlow id="Flow_1a5o0hp" name="Si" sourceRef="Gateway_1sk6ge8" targetRef="Activity_0n3roep">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fallaEncontrada == true }</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1ic9f8h" sourceRef="Event_17shr7c" targetRef="Gateway_1sk6ge8" />
+    <bpmn:sequenceFlow id="Flow_0kl07po" name="No" sourceRef="Gateway_10mywip" targetRef="Event_0qjar9b">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riesgoAnomalia == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1obl9j6" name="Si" sourceRef="Gateway_10mywip" targetRef="Activity_1hl2wkp">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riesgoAnomalia == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_12f94my" sourceRef="Activity_1jr66av" targetRef="Gateway_10mywip" />
+    <bpmn:sequenceFlow id="Flow_0lc4qje" sourceRef="Activity_1odudnt" targetRef="Activity_1jr66av" />
+    <bpmn:sequenceFlow id="Flow_0jcgvw0" sourceRef="Activity_0n3roep" targetRef="Activity_1odudnt" />
     <bpmn:sequenceFlow id="Flow_04ib88d" name="No" sourceRef="Gateway_1sk6ge8" targetRef="Event_1y8jd33">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fallaEncontrada == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:endEvent id="Event_1y8jd33" name="Inspección finalizada">
-      <bpmn:incoming>Flow_04ib88d</bpmn:incoming>
+    <bpmn:endEvent id="Event_1vta700" name="Anomalia Resuelta">
+      <bpmn:incoming>Flow_1u1it1e</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_1odudnt" name=" Revisar Anomalía" camunda:formRef="VisualizacionAnomalia" camunda:formRefBinding="latest">
-      <bpmn:incoming>Flow_0jcgvw0</bpmn:incoming>
-      <bpmn:outgoing>Flow_0lc4qje</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="Activity_1jr66av" name="Evaluar anomalía">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="riesgoAnomalia" label="la anomalia representa un riesgo?" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0lc4qje</bpmn:incoming>
-      <bpmn:outgoing>Flow_12f94my</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_10mywip" name="¿Representa riesgo?">
-      <bpmn:incoming>Flow_12f94my</bpmn:incoming>
-      <bpmn:outgoing>Flow_1obl9j6</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0kl07po</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_0qjar9b" name="Anomalía rechazada">
-      <bpmn:incoming>Flow_0kl07po</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:startEvent id="Event_17shr7c" name="Inspección de Linea">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="fallaEncontrada" label="¿Se ha encontrado una falla?" type="boolean" />
-          <camunda:formField id="idLinea" label="Linea de operación con anomalia" type="long" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:outgoing>Flow_1ic9f8h</bpmn:outgoing>
-    </bpmn:startEvent>
-    <bpmn:exclusiveGateway id="Gateway_1sk6ge8" name="¿Posible falla detectada?">
-      <bpmn:incoming>Flow_1ic9f8h</bpmn:incoming>
-      <bpmn:outgoing>Flow_1a5o0hp</bpmn:outgoing>
-      <bpmn:outgoing>Flow_04ib88d</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_0n3roep" name="Escribir notificación de anomalía" camunda:formRef="formularioHallazgoAnomalia" camunda:formRefBinding="latest">
-      <bpmn:extensionElements />
-      <bpmn:incoming>Flow_1a5o0hp</bpmn:incoming>
-      <bpmn:outgoing>Flow_0jcgvw0</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:parallelGateway id="Gateway_1vo6a3a">
-      <bpmn:incoming>Flow_1qaeia3</bpmn:incoming>
-      <bpmn:outgoing>Flow_12zvbp4</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1vre2hn</bpmn:outgoing>
+    <bpmn:parallelGateway id="Gateway_01alcfr">
+      <bpmn:incoming>Flow_0ontmnl</bpmn:incoming>
+      <bpmn:incoming>Flow_12zvbp4</bpmn:incoming>
+      <bpmn:outgoing>Flow_1u1it1e</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:userTask id="Activity_1hdy1a8" name="Verificar solución">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="verificarSolucion" label="¿se corrigio la anomalía?" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1obv2l7</bpmn:incoming>
-      <bpmn:outgoing>Flow_0q3n8un</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_09xl6ex" name="¿se soluciono la anomalia?">
-      <bpmn:incoming>Flow_0q3n8un</bpmn:incoming>
-      <bpmn:outgoing>Flow_0dbnnbm</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0sv5l9o</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:exclusiveGateway id="Gateway_0hl4khl">
-      <bpmn:incoming>Flow_1vre2hn</bpmn:incoming>
-      <bpmn:incoming>Flow_0sv5l9o</bpmn:incoming>
-      <bpmn:outgoing>Flow_0aj4d2y</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_06sq6bi" name="Autorizar reanudación de operación" camunda:class="com.software1.controlCalidad.ReanudarLinea">
-      <bpmn:incoming>Flow_0dbnnbm</bpmn:incoming>
-      <bpmn:outgoing>Flow_0ontmnl</bpmn:outgoing>
+    <bpmn:serviceTask id="Activity_1hl2wkp" name="Detener Linea" camunda:class="com.software1.controlCalidad.DetenerLinea">
+      <bpmn:documentation>com.software1.control</bpmn:documentation>
+      <bpmn:incoming>Flow_1obl9j6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qaeia3</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:subProcess id="Activity_1h7rfvn" name="Solucionar falla">
       <bpmn:incoming>Flow_0aj4d2y</bpmn:incoming>
@@ -180,19 +124,76 @@
         <bpmn:outgoing>Flow_19uf9pz</bpmn:outgoing>
       </bpmn:userTask>
     </bpmn:subProcess>
-    <bpmn:serviceTask id="Activity_1hl2wkp" name="Detener Linea" camunda:class="com.software1.controlCalidad.DetenerLinea">
-      <bpmn:documentation>com.software1.control</bpmn:documentation>
-      <bpmn:incoming>Flow_1obl9j6</bpmn:incoming>
-      <bpmn:outgoing>Flow_1qaeia3</bpmn:outgoing>
+    <bpmn:serviceTask id="Activity_06sq6bi" name="Autorizar reanudación de operación" camunda:class="com.software1.controlCalidad.ReanudarLinea">
+      <bpmn:incoming>Flow_0dbnnbm</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ontmnl</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_1qaeia3" sourceRef="Activity_1hl2wkp" targetRef="Gateway_1vo6a3a" />
-    <bpmn:parallelGateway id="Gateway_01alcfr">
-      <bpmn:incoming>Flow_0ontmnl</bpmn:incoming>
-      <bpmn:incoming>Flow_12zvbp4</bpmn:incoming>
-      <bpmn:outgoing>Flow_1u1it1e</bpmn:outgoing>
+    <bpmn:exclusiveGateway id="Gateway_0hl4khl">
+      <bpmn:incoming>Flow_1vre2hn</bpmn:incoming>
+      <bpmn:incoming>Flow_0sv5l9o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0aj4d2y</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_09xl6ex" name="¿se soluciono la anomalia?">
+      <bpmn:incoming>Flow_0q3n8un</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dbnnbm</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0sv5l9o</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_1hdy1a8" name="Verificar solución">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="verificarSolucion" label="¿se corrigio la anomalía?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1obv2l7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0q3n8un</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:parallelGateway id="Gateway_1vo6a3a">
+      <bpmn:incoming>Flow_1qaeia3</bpmn:incoming>
+      <bpmn:outgoing>Flow_12zvbp4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1vre2hn</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:endEvent id="Event_1vta700" name="Anomalia Resuelta">
-      <bpmn:incoming>Flow_1u1it1e</bpmn:incoming>
+    <bpmn:userTask id="Activity_0n3roep" name="Escribir notificación de anomalía" camunda:formRef="formularioHallazgoAnomalia" camunda:formRefBinding="latest">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_1a5o0hp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jcgvw0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1sk6ge8" name="¿Posible falla detectada?">
+      <bpmn:incoming>Flow_1ic9f8h</bpmn:incoming>
+      <bpmn:outgoing>Flow_1a5o0hp</bpmn:outgoing>
+      <bpmn:outgoing>Flow_04ib88d</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:startEvent id="Event_17shr7c" name="Inspección de Linea">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="fallaEncontrada" label="¿Se ha encontrado una falla?" type="boolean" />
+          <camunda:formField id="idLinea" label="Linea de operación con anomalia" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1ic9f8h</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_0qjar9b" name="Anomalía rechazada">
+      <bpmn:incoming>Flow_0kl07po</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_10mywip" name="¿Representa riesgo?">
+      <bpmn:incoming>Flow_12f94my</bpmn:incoming>
+      <bpmn:outgoing>Flow_1obl9j6</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0kl07po</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_1jr66av" name="Evaluar anomalía">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="riesgoAnomalia" label="la anomalia representa un riesgo?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lc4qje</bpmn:incoming>
+      <bpmn:outgoing>Flow_12f94my</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1odudnt" name=" Revisar Anomalía" camunda:formRef="VisualizacionAnomalia" camunda:formRefBinding="latest">
+      <bpmn:incoming>Flow_0jcgvw0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lc4qje</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1y8jd33" name="Inspección finalizada">
+      <bpmn:incoming>Flow_04ib88d</bpmn:incoming>
     </bpmn:endEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">

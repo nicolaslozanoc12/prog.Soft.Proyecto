@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>Registrar Incidente</h3>
+	<p>ID Tarea: <span th:text="${taskId}"></span></p>
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<label for="horaAlerta">Ingrese la hora de alerta:</label><br>
+		<input id="horaAlerta" type="text" name="horaAlerta"><br><br>
+
+		<label for="idLinea">Id de la linea de produccion:</label><br>
+		<input id="idLinea" type="number" name="idLinea" ><br><br>
+
+		<button type="submit">Enviar Reporte</button>
+	</form>
+</div>
+</body>
+</html>

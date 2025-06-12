@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Dashboard</title>
+</head>
+<body>
+<h1 th:text="'Dashboard para: ' + ${groupName}">Dashboard</h1>
+
+<hr>
+<h2>Acciones</h2>
+<a th:href="@{/proceso/{key}/iniciar(key=${processKey})}">Iniciar Nuevo Proceso de <span th:text="${processKey}"></span></a>
+
+<hr>
+<h2>Tareas Pendientes</h2>
+<div th:if="${#lists.isEmpty(tasks)}">
+	<p>No hay tareas pendientes para este grupo.</p>
+</div>
+<table th:unless="${#lists.isEmpty(tasks)}" border="1">
+	<thead>
+	<tr>
+		<th>ID Tarea</th>
+		<th>Nombre Tarea</th>
+		<th>Fecha Creación</th>
+		<th>Acción</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="task : ${tasks}">
+		<td th:text="${task.id}"></td>
+		<td th:text="${task.name}"></td>
+		<td th:text="${task.created}"></td>
+		<td><a th:href="@{/tarea/{id}/form(id=${task.id})}">Atender Tarea</a></td>
+	</tr>
+	</tbody>
+</table>
+</body>
+</html>
