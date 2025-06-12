@@ -14,7 +14,7 @@ public class RecibirInsumos implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         Long idLinea = ((Number) execution.getVariable("idPieza")).longValue();
-        Long cantidadLlegadaLong = (Long) execution.getVariable("cantidad");
+        Long cantidadLlegadaLong = (Long) execution.getVariable("cantidadLlegada");
         bodegaService.actualizarNumeroDisponible(idLinea, Math.toIntExact(cantidadLlegadaLong));
         System.out.println("Insumos recibidos correctamente.");
     }

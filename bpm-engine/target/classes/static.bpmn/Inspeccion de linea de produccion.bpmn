@@ -12,13 +12,13 @@
       <bpmn:lane id="Lane_1toyofi" name="Supervisor de Producción">
         <bpmn:flowNodeRef>Activity_1odudnt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1jr66av</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1hl2wkp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1hdy1a8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_09xl6ex</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_06sq6bi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_01alcfr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1vta700</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1vo6a3a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1hl2wkp</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1ff7v0w" name="Equipo de mantenimiento">
         <bpmn:flowNodeRef>Gateway_0hl4khl</bpmn:flowNodeRef>
@@ -47,7 +47,6 @@
     <bpmn:startEvent id="Event_17shr7c" name="Falla detectada en la linea">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="fallaEncontrada" label="¿Se ha encontrado una falla?" type="boolean" />
           <camunda:formField id="idLinea" label="Linea de operación con anomalia" type="long" />
         </camunda:formData>
       </bpmn:extensionElements>
@@ -69,11 +68,6 @@
       <bpmn:incoming>Flow_0lc4qje</bpmn:incoming>
       <bpmn:outgoing>Flow_1vam187</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:serviceTask id="Activity_1hl2wkp" name="Detener Linea" camunda:class="com.software1.controlCalidad.DetenerLinea">
-      <bpmn:documentation>com.software1.control</bpmn:documentation>
-      <bpmn:incoming>Flow_1vam187</bpmn:incoming>
-      <bpmn:outgoing>Flow_1qaeia3</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_1vam187" sourceRef="Activity_1jr66av" targetRef="Activity_1hl2wkp" />
     <bpmn:userTask id="Activity_1hdy1a8" name="Verificar solución">
       <bpmn:extensionElements>
@@ -115,6 +109,11 @@
       <bpmn:outgoing>Flow_12zvbp4</bpmn:outgoing>
       <bpmn:outgoing>Flow_1vre2hn</bpmn:outgoing>
     </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_1hl2wkp" name="Detener Linea" camunda:class="com.software1.controlCalidad.DetenerLinea">
+      <bpmn:documentation>com.software1.control</bpmn:documentation>
+      <bpmn:incoming>Flow_1vam187</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qaeia3</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1qw6dtq">
