@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0cc58hb" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <decision id="nvRiesgo" name="nvRiesgo" camunda:historyTimeToLive="180">
+    <decisionTable id="DecisionTable_1vpp2i8">
+      <input id="Input_1" label="Nivel de anomalia" camunda:inputVariable="nvAnomalia">
+        <inputExpression id="InputExpression_1" typeRef="long">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Presenta riesgo" name="nvRiesgo" typeRef="string" />
+      <rule id="DecisionRule_1ting0s">
+        <inputEntry id="UnaryTests_0y10o7b">
+          <text>[1..5]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sz252e">
+          <text>"no"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14uji0k">
+        <inputEntry id="UnaryTests_0biraws">
+          <text>[6..10]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_062z641">
+          <text>"si"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="nvRiesgo">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

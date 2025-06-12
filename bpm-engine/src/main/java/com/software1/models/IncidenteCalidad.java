@@ -3,6 +3,7 @@ package com.software1.models;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "incidentes_calidad")
@@ -17,6 +18,7 @@ public class IncidenteCalidad {
 
     @Column(name = "hora_alerta")
     private String horaAlerta;
+
 
     @Column(name = "causa_raiz", columnDefinition = "TEXT")
     private String causaRaiz;

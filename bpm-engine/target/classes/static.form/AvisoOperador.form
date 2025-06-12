@@ -4,36 +4,35 @@
       "label": "Identificación de linea del incidente",
       "type": "number",
       "layout": {
-        "row": "Row_1cwbzhj",
+        "row": "Row_0zgjrwi",
         "columns": null
       },
-      "id": "Field_05je8l7",
+      "id": "Field_0ywbfmz",
       "key": "idLinea",
-      "disabled": true,
       "validate": {
-        "min": 0
+        "required": true
       }
     },
     {
       "subtype": "time",
       "type": "datetime",
       "layout": {
-        "row": "Row_1dhz8s9",
+        "row": "Row_0s892b9",
         "columns": null
       },
-      "id": "Field_06f0dnf",
+      "id": "Field_1a25pum",
       "key": "horaAlerta",
       "timeLabel": "Hora del incidente",
       "timeSerializingFormat": "utc_offset",
       "timeInterval": 15,
+      "disabled": false,
       "validate": {
         "required": true
-      },
-      "disabled": true
+      }
     }
   ],
   "type": "default",
-  "id": "AvisoSupervisor",
+  "id": "AvisoOperador",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.33.1"

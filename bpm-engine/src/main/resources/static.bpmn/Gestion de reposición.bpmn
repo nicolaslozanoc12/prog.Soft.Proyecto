@@ -19,11 +19,11 @@
       </bpmn:lane>
       <bpmn:lane id="Lane_0oqkhrv" name="Bodega">
         <bpmn:flowNodeRef>Gateway_1wh8a8z</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_17si1r9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1q8i729</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_15z884o</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1h3tiei</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1gqw7dw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_17si1r9</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1hr1u6q" sourceRef="Activity_1q8i729" targetRef="Gateway_15z884o" />
@@ -83,15 +83,7 @@
       <bpmn:outgoing>Flow_1pl3gfe</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0ovkpv7" sourceRef="Activity_0eang1m" targetRef="Activity_1kdgo1d" />
-    <bpmn:sendTask id="Activity_1kdgo1d" name="Enviar solicitud de insumos a proveedor">
-      <bpmn:incoming>Flow_0ovkpv7</bpmn:incoming>
-      <bpmn:outgoing>Flow_0dww39f</bpmn:outgoing>
-    </bpmn:sendTask>
     <bpmn:sequenceFlow id="Flow_0dww39f" sourceRef="Activity_1kdgo1d" targetRef="Activity_17si1r9" />
-    <bpmn:receiveTask id="Activity_17si1r9" name="Recibir insumos">
-      <bpmn:incoming>Flow_0dww39f</bpmn:incoming>
-      <bpmn:outgoing>Flow_0umcp34</bpmn:outgoing>
-    </bpmn:receiveTask>
     <bpmn:sequenceFlow id="Flow_0umcp34" sourceRef="Activity_17si1r9" targetRef="Activity_1q8i729" />
     <bpmn:serviceTask id="Activity_1q8i729" name="Actualizar inventario" camunda:class="com.software1.reposicion.RecibirInsumos">
       <bpmn:incoming>Flow_0umcp34</bpmn:incoming>
@@ -109,6 +101,14 @@
     <bpmn:endEvent id="Event_1gqw7dw" name="Inventario bajo subsanado">
       <bpmn:incoming>Flow_1n94leg</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:task id="Activity_1kdgo1d" name="Enviar solicitud de insumos a proveedor">
+      <bpmn:incoming>Flow_0ovkpv7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dww39f</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_17si1r9" name="Recibir insumos">
+      <bpmn:incoming>Flow_0dww39f</bpmn:incoming>
+      <bpmn:outgoing>Flow_0umcp34</bpmn:outgoing>
+    </bpmn:task>
   </bpmn:process>
   <bpmn:process id="Process_1dbuxnp" isExecutable="false" />
   <bpmn:message id="Message_1olispr" name="Message_1olispr" />
@@ -151,12 +151,6 @@
           <dc:Bounds x="256" y="405" width="89" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1i4x6cd_di" bpmnElement="Activity_1kdgo1d">
-        <dc:Bounds x="990" y="550" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_06z1e9j_di" bpmnElement="Activity_17si1r9">
-        <dc:Bounds x="1170" y="720" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1uvjbqm_di" bpmnElement="Activity_1q8i729">
         <dc:Bounds x="1350" y="720" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -172,6 +166,12 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1774" y="785" width="73" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mo0opd_di" bpmnElement="Activity_1kdgo1d">
+        <dc:Bounds x="990" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0q5qylw_di" bpmnElement="Activity_17si1r9">
+        <dc:Bounds x="1170" y="720" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1hr1u6q_di" bpmnElement="Flow_1hr1u6q">
         <di:waypoint x="1450" y="760" />

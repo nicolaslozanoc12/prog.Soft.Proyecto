@@ -2,25 +2,33 @@
   "components": [
     {
       "label": "Identificación de linea del incidente",
-      "type": "textfield",
+      "type": "number",
       "layout": {
-        "row": "Row_08zqskx",
+        "row": "Row_1cwbzhj",
         "columns": null
       },
-      "id": "Field_072q0gf",
+      "id": "Field_05je8l7",
       "key": "idLinea",
-      "disabled": true
+      "disabled": true,
+      "validate": {
+        "min": 0
+      }
     },
     {
-      "label": "Hora del incidente",
-      "type": "textfield",
+      "subtype": "time",
+      "type": "datetime",
       "layout": {
-        "row": "Row_1p6oqjv",
+        "row": "Row_1dhz8s9",
         "columns": null
       },
-      "id": "Field_02mmeab",
+      "id": "Field_06f0dnf",
       "key": "horaAlerta",
-      "readonly": true,
+      "timeLabel": "Hora del incidente",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 15,
+      "validate": {
+        "required": true
+      },
       "disabled": true
     }
   ],
