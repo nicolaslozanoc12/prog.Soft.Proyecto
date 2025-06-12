@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_08md7lm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <bpmn:collaboration id="Collaboration_0nmc5de">
+    <bpmn:participant id="Participant_1gdnz4q" name="Solucion falla" processRef="solProblemasCall" />
+  </bpmn:collaboration>
+  <bpmn:process id="solProblemasCall" isExecutable="true" camunda:historyTimeToLive="1">
+    <bpmn:startEvent id="Event_0wmv67v" name="Inicio de solución de falla">
+      <bpmn:outgoing>Flow_1m5asfy</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_0wxcz95" name="Falla solucionada">
+      <bpmn:incoming>Flow_19uf9pz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_1rvvmot" name="Realizar diagnóstico del fallo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="realizarDiagnostico" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1m5asfy</bpmn:incoming>
+      <bpmn:outgoing>Flow_15d8zz8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1v8ppd8" name="Ejecutar reparación">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="ejecutarReparacion" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_15d8zz8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1avzu83</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1p73504" name="Realizar mantenimiento">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="realizarMantenimiento" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1avzu83</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jzqcrr</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_05txn87" name="Realizar prueba funcional">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="realizarPrueba" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1jzqcrr</bpmn:incoming>
+      <bpmn:outgoing>Flow_19uf9pz</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1m5asfy" sourceRef="Event_0wmv67v" targetRef="Activity_1rvvmot" />
+    <bpmn:sequenceFlow id="Flow_19uf9pz" sourceRef="Activity_05txn87" targetRef="Event_0wxcz95" />
+    <bpmn:sequenceFlow id="Flow_15d8zz8" sourceRef="Activity_1rvvmot" targetRef="Activity_1v8ppd8" />
+    <bpmn:sequenceFlow id="Flow_1avzu83" sourceRef="Activity_1v8ppd8" targetRef="Activity_1p73504" />
+    <bpmn:sequenceFlow id="Flow_1jzqcrr" sourceRef="Activity_1p73504" targetRef="Activity_05txn87" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0nmc5de">
+      <bpmndi:BPMNShape id="Participant_1gdnz4q_di" bpmnElement="Participant_1gdnz4q" isHorizontal="true">
+        <dc:Bounds x="160" y="60" width="930" height="320" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0wmv67v_di" bpmnElement="Event_0wmv67v">
+        <dc:Bounds x="282" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="258" y="215" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0wxcz95_di" bpmnElement="Event_0wxcz95">
+        <dc:Bounds x="1012" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="987" y="215" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0coo1kg_di" bpmnElement="Activity_1rvvmot">
+        <dc:Bounds x="370" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1tajjcu_di" bpmnElement="Activity_1v8ppd8">
+        <dc:Bounds x="530" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yb1ccm_di" bpmnElement="Activity_1p73504">
+        <dc:Bounds x="690" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1gmn4ir_di" bpmnElement="Activity_05txn87">
+        <dc:Bounds x="850" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1m5asfy_di" bpmnElement="Flow_1m5asfy">
+        <di:waypoint x="318" y="190" />
+        <di:waypoint x="370" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19uf9pz_di" bpmnElement="Flow_19uf9pz">
+        <di:waypoint x="950" y="190" />
+        <di:waypoint x="1012" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15d8zz8_di" bpmnElement="Flow_15d8zz8">
+        <di:waypoint x="470" y="190" />
+        <di:waypoint x="530" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1avzu83_di" bpmnElement="Flow_1avzu83">
+        <di:waypoint x="630" y="190" />
+        <di:waypoint x="690" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jzqcrr_di" bpmnElement="Flow_1jzqcrr">
+        <di:waypoint x="790" y="190" />
+        <di:waypoint x="850" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

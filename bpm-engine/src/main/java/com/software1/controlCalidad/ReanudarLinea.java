@@ -17,7 +17,7 @@ public class ReanudarLinea implements JavaDelegate {
     }
     @Override
     public void execute(DelegateExecution execution) {
-        Long idLinea = (Long) execution.getVariable("idLinea");
+        Long idLinea = ((Number) execution.getVariable("idLinea")).longValue();
         estadoLineaService.modifyEstadoLinea(idLinea, false);
 
     }
