@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,31 @@ public class ViewController {
         model.addAttribute("tasks", tasks);
 
         return "dashboard-rol";
+    }
+    @GetMapping("/proceso/{processKey}/iniciar")
+    public String showStartForm(@PathVariable String processKey, Model model) {
+        model.addAttribute("processKey", processKey);
+        Map<String, Object> variables = new HashMap<>();
+        camundaService.iniciarProceso(processKey, variables);
+        model.addAttribute("mensaje", "¡Llamada de prueba para iniciar el proceso '" + processKey + "' realizada! Revisa el Cockpit de Camunda.");
+
+        // Redirigimos a la página de resultado
+        return "index";
+    }
+    @PostMapping("/proceso/{processKey}/iniciar")
+    public String handleStartForm(@PathVariable String processKey,
+                                  @RequestParam Long idLinea,
+                                  @RequestParam String descripcionInicial,
+                                  Model model) {
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("idLinea", Map.of("value", idLinea));
+        variables.put("descripcionInicial", Map.of("value", descripcionInicial));
+
+        camundaService.iniciarProceso(processKey, variables);
+
+        model.addAttribute("mensaje", "Proceso " + processKey + " iniciado correctamente.");
+        return "resultado";
     }
 
     // --- Endpoints para manejar formularios de TAREAS ---
