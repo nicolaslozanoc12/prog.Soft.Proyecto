@@ -13,7 +13,7 @@ Sistema integrado para la gestión de control de calidad y reposición de insumo
 
 ```
 ┌─────────────────┐       REST API        ┌──────────────────┐
-│    AppWeb       │◄────────────────────►│   bpm-engine     │
+│    AppWeb       │◄────────────────────► │   bpm-engine     │
 │   (Frontend)    │   http://localhost    │  (BPM Engine)    │
 │   Puerto: 9001  │       :9000           │   Puerto: 9000   │
 └─────────────────┘                       └──────────────────┘
