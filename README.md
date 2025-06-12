@@ -262,36 +262,7 @@ cd AppWeb
 3. **Control de Calidad**
    - Inspección programada → Detección de problemas → Escalamiento automático
 
-## 🧪 Testing
-
-```bash
-# Ejecutar tests en AppWeb
-cd AppWeb
-./mvnw test
-
-# Ejecutar tests en bpm-engine
-cd bmp-engine
-./mvnw test
-```
-
-## 📈 Monitoreo y Métricas
-
-### 🔍 Endpoints de Salud
-- **AppWeb Health**: http://localhost:9001/actuator/health
-- **bpm-engine Health**: http://localhost:9000/actuator/health
-
-### 📊 Métricas Camunda
-- **Cockpit Dashboard**: Monitoreo de procesos en tiempo real
-- **Admin Console**: Gestión de usuarios y configuraciones
-- **Tasklist**: Lista de tareas pendientes por usuario
-
 ## 📝 Documentación Adicional
-
 - 📖 [Documentación Camunda](https://docs.camunda.org/)
 - 🌱 [Spring Boot Reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
-
-## 👥 Equipo de Desarrollo
-
-- **Equipo**: Software1
-- **Proyecto**: Sistema Toyota - Control de Calidad
-- **Versión**: 1.0.0-SNAPSHOT
+- 🍃 [Thymeleaf Documentation](https://www.thymeleaf.org/documentation.html)
