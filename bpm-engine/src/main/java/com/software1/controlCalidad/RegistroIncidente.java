@@ -16,7 +16,7 @@ public class RegistroIncidente  implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        Long idLinea = (Long) execution.getVariable("idLinea");
+        Long idLinea = ((Number) execution.getVariable("idLinea")).longValue();
         System.out.printf("Id de la línea: %d%n", idLinea);
         String horaAlerta = (String) execution.getVariable("horaAlerta");
         String  causaRaiz = (String) execution.getVariable("causaRaiz");

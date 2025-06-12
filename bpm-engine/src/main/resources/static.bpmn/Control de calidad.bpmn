@@ -10,101 +10,54 @@
   <bpmn:process id="ControlCalidad" isExecutable="true" camunda:historyTimeToLive="1">
     <bpmn:laneSet id="LaneSet_18y7vy3">
       <bpmn:lane id="Lane_000nfbf" name="Superviosr de produccion">
-        <bpmn:flowNodeRef>Activity_18yry9r</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0p1vydl</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>RecibirAlerta</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0jgu4bi</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RecibirAlerta</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0p1vydl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_18yry9r</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1esbvzu" name="Operador de línea">
-        <bpmn:flowNodeRef>DetenerProduccion</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Alerta</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>DetenerProduccion</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0c06fpv" name="Equipo de calidad">
-        <bpmn:flowNodeRef>Activity_0cu3sg8</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1tacz02</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>DeterminarCausaRaiz</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>InspeccionarProductoDefectuoso</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0yhvqjf</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0ugvkdk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0yhvqjf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>InspeccionarProductoDefectuoso</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>DeterminarCausaRaiz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1tacz02</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0cu3sg8</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="Flow_0pfw3dt" sourceRef="StartEvent_1" targetRef="Alerta" />
-    <bpmn:sequenceFlow id="Flow_03zvn1q" sourceRef="Alerta" targetRef="DetenerProduccion" />
-    <bpmn:sequenceFlow id="Flow_0holdev" sourceRef="DetenerProduccion" targetRef="RecibirAlerta" />
-    <bpmn:sequenceFlow id="Flow_01ipf64" sourceRef="RecibirAlerta" targetRef="Gateway_0yhvqjf" />
-    <bpmn:sequenceFlow id="Flow_0bh9zl8" name="No" sourceRef="Gateway_0ugvkdk" targetRef="Gateway_0yhvqjf">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${calidad == false}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0exkjca" sourceRef="Gateway_0yhvqjf" targetRef="InspeccionarProductoDefectuoso" />
-    <bpmn:sequenceFlow id="Flow_0rqmap5" sourceRef="InspeccionarProductoDefectuoso" targetRef="DeterminarCausaRaiz" />
-    <bpmn:sequenceFlow id="Flow_1o4070m" sourceRef="DeterminarCausaRaiz" targetRef="Activity_1tacz02" />
-    <bpmn:sequenceFlow id="Flow_1xtkuwh" sourceRef="Activity_0cu3sg8" targetRef="Gateway_0ugvkdk" />
+    <bpmn:sequenceFlow id="Flow_1j6acjq" sourceRef="Activity_0p1vydl" targetRef="Activity_18yry9r" />
     <bpmn:sequenceFlow id="Flow_0l7tyo8" sourceRef="Activity_1tacz02" targetRef="Activity_0cu3sg8" />
+    <bpmn:sequenceFlow id="Flow_1o4070m" sourceRef="DeterminarCausaRaiz" targetRef="Activity_1tacz02" />
+    <bpmn:sequenceFlow id="Flow_0rqmap5" sourceRef="InspeccionarProductoDefectuoso" targetRef="DeterminarCausaRaiz" />
+    <bpmn:sequenceFlow id="Flow_0exkjca" sourceRef="Gateway_0yhvqjf" targetRef="InspeccionarProductoDefectuoso" />
     <bpmn:sequenceFlow id="Flow_06rs8d6" name="Si" sourceRef="Gateway_0ugvkdk" targetRef="Activity_0p1vydl">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${calidad == true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0bh9zl8" name="No" sourceRef="Gateway_0ugvkdk" targetRef="Gateway_0yhvqjf">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${calidad == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1xtkuwh" sourceRef="Activity_0cu3sg8" targetRef="Gateway_0ugvkdk" />
+    <bpmn:sequenceFlow id="Flow_01ipf64" sourceRef="RecibirAlerta" targetRef="Gateway_0yhvqjf" />
+    <bpmn:sequenceFlow id="Flow_0holdev" sourceRef="DetenerProduccion" targetRef="RecibirAlerta" />
+    <bpmn:sequenceFlow id="Flow_03zvn1q" sourceRef="Alerta" targetRef="DetenerProduccion" />
+    <bpmn:sequenceFlow id="Flow_0pfw3dt" sourceRef="StartEvent_1" targetRef="Alerta" />
     <bpmn:sequenceFlow id="Flow_0pllwq6" sourceRef="Activity_18yry9r" targetRef="Event_0jgu4bi" />
-    <bpmn:sequenceFlow id="Flow_1j6acjq" sourceRef="Activity_0p1vydl" targetRef="Activity_18yry9r" />
-    <bpmn:endEvent id="Event_0jgu4bi" name="Defecto superado">
-      <bpmn:incoming>Flow_0pllwq6</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:userTask id="Alerta" name="Activar mecanismo de alerta" camunda:candidateGroups="operadorLinea">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="horaAlerta" label="escriba la hora donde se activo la alerta" type="string" />
-          <camunda:formField id="idLinea" label="Escriba la id de linea: " type="long" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0pfw3dt</bpmn:incoming>
-      <bpmn:outgoing>Flow_03zvn1q</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:serviceTask id="DetenerProduccion" name="Detener línea de producción" camunda:class="com.software1.controlCalidad.DetenerLinea">
-      <bpmn:incoming>Flow_03zvn1q</bpmn:incoming>
-      <bpmn:outgoing>Flow_0holdev</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:userTask id="RecibirAlerta" name="Recibir alerta" camunda:formRef="AvisoSupervisor" camunda:formRefBinding="latest" camunda:candidateGroups="supervisorProduccion">
+    <bpmn:startEvent id="StartEvent_1" name="Defecto Detectado">
       <bpmn:extensionElements />
-      <bpmn:incoming>Flow_0holdev</bpmn:incoming>
-      <bpmn:outgoing>Flow_01ipf64</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_0ugvkdk" name="¿Cumple estándares de calidad?">
-      <bpmn:incoming>Flow_1xtkuwh</bpmn:incoming>
-      <bpmn:outgoing>Flow_0bh9zl8</bpmn:outgoing>
-      <bpmn:outgoing>Flow_06rs8d6</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:exclusiveGateway id="Gateway_0yhvqjf">
-      <bpmn:incoming>Flow_0bh9zl8</bpmn:incoming>
-      <bpmn:incoming>Flow_01ipf64</bpmn:incoming>
-      <bpmn:outgoing>Flow_0exkjca</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:userTask id="InspeccionarProductoDefectuoso" name="Inspeccionar  producto defectoso" camunda:candidateGroups="equipoCalidad">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="inspeccionProducto" label="¿inspección completada?" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0exkjca</bpmn:incoming>
-      <bpmn:outgoing>Flow_0rqmap5</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="DeterminarCausaRaiz" name="Determinar causa raíz" camunda:candidateGroups="equipoCalidad">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="causaRaiz" label="¿cual fue la causa raiz?" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0rqmap5</bpmn:incoming>
-      <bpmn:outgoing>Flow_1o4070m</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="Activity_1tacz02" name="Establecer acción correctiva" camunda:candidateGroups="equipoCalidad">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="accionCorrectiva" label="¿Que accion correctiva se hizo?" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1o4070m</bpmn:incoming>
-      <bpmn:outgoing>Flow_0l7tyo8</bpmn:outgoing>
-    </bpmn:userTask>
+      <bpmn:outgoing>Flow_0pfw3dt</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_18yry9r" name="Autorizar reanudación de línea" camunda:class="com.software1.controlCalidad.ReanudarLinea">
+      <bpmn:incoming>Flow_1j6acjq</bpmn:incoming>
+      <bpmn:outgoing>Flow_0pllwq6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0p1vydl" name="Registrar incidente" camunda:class="com.software1.controlCalidad.RegistroIncidente">
+      <bpmn:incoming>Flow_06rs8d6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1j6acjq</bpmn:outgoing>
+    </bpmn:serviceTask>
     <bpmn:userTask id="Activity_0cu3sg8" name="Verificar calidad" camunda:candidateGroups="equipoCalidad">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -117,18 +70,60 @@
       <bpmn:incoming>Flow_0l7tyo8</bpmn:incoming>
       <bpmn:outgoing>Flow_1xtkuwh</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_0p1vydl" name="Registrar incidente" camunda:class="com.software1.controlCalidad.RegistroIncidente">
-      <bpmn:incoming>Flow_06rs8d6</bpmn:incoming>
-      <bpmn:outgoing>Flow_1j6acjq</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_18yry9r" name="Autorizar reanudación de línea" camunda:class="com.software1.controlCalidad.ReanudarLinea">
-      <bpmn:incoming>Flow_1j6acjq</bpmn:incoming>
-      <bpmn:outgoing>Flow_0pllwq6</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:startEvent id="StartEvent_1" name="Defecto Detectado">
+    <bpmn:userTask id="Activity_1tacz02" name="Establecer acción correctiva" camunda:candidateGroups="equipoCalidad">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="accionCorrectiva" label="¿Que accion correctiva se hizo?" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1o4070m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l7tyo8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="DeterminarCausaRaiz" name="Determinar causa raíz" camunda:candidateGroups="equipoCalidad">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="causaRaiz" label="¿cual fue la causa raiz?" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rqmap5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1o4070m</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="InspeccionarProductoDefectuoso" name="Inspeccionar  producto defectoso" camunda:candidateGroups="equipoCalidad">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="inspeccionProducto" label="¿inspección completada?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0exkjca</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rqmap5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_0yhvqjf">
+      <bpmn:incoming>Flow_0bh9zl8</bpmn:incoming>
+      <bpmn:incoming>Flow_01ipf64</bpmn:incoming>
+      <bpmn:outgoing>Flow_0exkjca</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_0ugvkdk" name="¿Cumple estándares de calidad?">
+      <bpmn:incoming>Flow_1xtkuwh</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bh9zl8</bpmn:outgoing>
+      <bpmn:outgoing>Flow_06rs8d6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="RecibirAlerta" name="Recibir alerta" camunda:formKey="form-recibir-alerta" camunda:candidateGroups="supervisorProduccion">
       <bpmn:extensionElements />
-      <bpmn:outgoing>Flow_0pfw3dt</bpmn:outgoing>
-    </bpmn:startEvent>
+      <bpmn:incoming>Flow_0holdev</bpmn:incoming>
+      <bpmn:outgoing>Flow_01ipf64</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="DetenerProduccion" name="Detener línea de producción" camunda:class="com.software1.controlCalidad.DetenerLinea">
+      <bpmn:incoming>Flow_03zvn1q</bpmn:incoming>
+      <bpmn:outgoing>Flow_0holdev</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Alerta" name="Activar mecanismo de alerta" camunda:formKey="form-Alerta" camunda:candidateGroups="operadorLinea">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0pfw3dt</bpmn:incoming>
+      <bpmn:outgoing>Flow_03zvn1q</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0jgu4bi" name="Defecto superado">
+      <bpmn:incoming>Flow_0pllwq6</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:message id="Message_2shcsh1" name="Message_2shcsh1" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">

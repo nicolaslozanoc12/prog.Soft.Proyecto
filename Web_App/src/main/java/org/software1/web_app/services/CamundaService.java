@@ -85,4 +85,14 @@ public class CamundaService {
             return Collections.emptyMap();
         }
     }
+    public Map<String, Object> getTaskVariables(String taskId) {
+        String url = camundaApiUrl + "engine-rest/task/" + taskId + "/variables";
+        try {
+            // Hacemos la llamada GET a la API de Camunda
+            return restTemplate.getForObject(url, Map.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyMap();
+        }
+    }
 }

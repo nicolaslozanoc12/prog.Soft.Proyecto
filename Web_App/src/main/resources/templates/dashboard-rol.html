@@ -8,7 +8,7 @@
 
 <hr>
 <h2>Acciones</h2>
-<a th:href="@{/proceso/{key}/iniciar(key=${processKey})}">Iniciar Nuevo Proceso de <span th:text="${processKey}"></span></a>
+<a th:href="@{/proceso/{key}/iniciar(key=${processKey}, groupName=${groupName})}">Iniciar Nuevo Proceso de <span th:text="${processKey}"></span></a>
 
 <hr>
 <h2>Tareas Pendientes</h2>
@@ -29,7 +29,9 @@
 		<td th:text="${task.id}"></td>
 		<td th:text="${task.name}"></td>
 		<td th:text="${task.created}"></td>
-		<td><a th:href="@{/tarea/{id}/form(id=${task.id})}">Atender Tarea</a></td>
+		<td>
+			<a th:href="@{/tarea/{id}/form(id=${task.id}, groupName=${groupName}, processKey=${processKey})}">Atender Tarea</a>
+		</td>
 	</tr>
 	</tbody>
 </table>
