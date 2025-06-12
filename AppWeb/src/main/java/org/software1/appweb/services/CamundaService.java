@@ -49,11 +49,6 @@ public class CamundaService {
         return response.getBody();
     }
 
-    // Obtener tareas por usuario
-    public String obtenerTareas(String usuario) {
-        String url = camundaApiUrl + "/task?assignee=" + usuario;
-        return restTemplate.getForObject(url, String.class);
-    }
 
     // Reclamar tarea
     public void reclamarTarea(String taskId, String userId) {
@@ -75,17 +70,39 @@ public class CamundaService {
     }
 
     // Completar tarea
-    public void completarTarea(String taskId, Map<String, Object> formData) {
+    public void completarTarea(String taskId, Map<String, String> formData) {
         String url = camundaApiUrl + "/task/" + taskId + "/complete";
+
+        // Obtener variables reales de la tarea (para los tipos)
+        Map<String, Object> formVariables = getFormVariables(taskId);
+
         Map<String, Object> request = new HashMap<>();
         Map<String, Object> variables = new HashMap<>();
+
         formData.forEach((k, v) -> {
             Map<String, Object> var = new HashMap<>();
-            var.put("value", v);
+            String type = ((Map<String, Object>) formVariables.get(k)).get("type").toString();
+
+            // Parse según el tipo
+            Object value = switch (type) {
+                case "Integer" -> Integer.valueOf(v);
+                case "Long" -> Long.valueOf(v);
+                case "Boolean" -> v.equalsIgnoreCase("on") || v.equalsIgnoreCase("true");
+                default -> v;
+            };
+
+            var.put("value", value);
+            var.put("type", type);
             variables.put(k, var);
         });
+
         request.put("variables", variables);
-        restTemplate.postForEntity(url, request, String.class);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
+
+        restTemplate.postForEntity(url, entity, String.class);
     }
 
     // 🔧 Método utilitario para formatear variables a JSON estilo Camunda

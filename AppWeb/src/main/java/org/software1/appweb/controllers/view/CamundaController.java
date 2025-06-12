@@ -34,16 +34,14 @@ public class CamundaController {
 
     @GetMapping("/task/{id}")
     public String showForm(@PathVariable String id, Model model) {
-        // Obtener las variables del formulario para esta tarea específica
         Map<String, Object> formVariables = camundaService.getFormVariables(id);
+        Map<String, Object> taskInfo = camundaService.getTaskInfo(id);
+
         model.addAttribute("taskId", id);
         model.addAttribute("formVariables", formVariables);
-
-        // Obtener información de la tarea
-        Map<String, Object> taskInfo = camundaService.getTaskInfo(id);
         model.addAttribute("taskInfo", taskInfo);
 
-        return "fragment/formulario-tipo"; // Vista genérica para formularios
+        return "formulario-tipo";
     }
 
     @PostMapping("/task/{id}/complete")
