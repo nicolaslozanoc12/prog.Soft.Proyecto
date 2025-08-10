@@ -7,13 +7,13 @@
           <text></text>
         </inputExpression>
       </input>
-      <output id="Output_1" label="Presenta riesgo" name="nvRiesgo" typeRef="string" />
+      <output id="Output_1" label="Presenta riesgo" name="riesgo" typeRef="boolean" />
       <rule id="DecisionRule_1ting0s">
         <inputEntry id="UnaryTests_0y10o7b">
           <text>[1..5]</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1sz252e">
-          <text>"no"</text>
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_14uji0k">
@@ -21,7 +21,7 @@
           <text>[6..10]</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_062z641">
-          <text>"si"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
     </decisionTable>

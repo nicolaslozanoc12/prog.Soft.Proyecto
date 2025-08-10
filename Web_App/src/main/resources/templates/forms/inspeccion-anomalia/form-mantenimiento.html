@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>mantenimiento de equipo</h3>
+	<p>complete la tarea y oprima el Boton.</p>
+
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+		<input type="hidden" id="horaMantenimientoCompletado" name="horaMantenimientoCompletado" />
+		<label for="mantenimientoCompletado">Descripción del mantenimiento:</label><br>
+		<textarea id="mantenimientoCompletado" name="mantenimientoCompletado" rows="4" cols="50" required></textarea><br><br>
+		<button type="submit">mantenimiento completado</button>
+	</form>
+
+	<script>
+        //escuchador al formulario
+        document.getElementById('horaMantenimientoCompletado').addEventListener('change', function() {
+            var fechaHoraActual = new Date();
+            //cuando se cambie el valor del input, se actualiza el valor del input hidden
+            document.getElementById('horaMantenimientoCompletado').value = fechaHoraActual.toString();
+        });
+	</script>
+</div>
+</body>
+</html>

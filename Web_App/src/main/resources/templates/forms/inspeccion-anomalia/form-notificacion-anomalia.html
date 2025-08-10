@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>Notificar anomalía</h3>
+	<p>ID Tarea: <span th:text="${taskId}"></span></p>
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+
+		<label for="idLinea">Id de la linea de produccion:</label><br>
+		<input id="idLinea" type="number" name="idLinea" required><br><br>
+
+		<label for="descripcionAnomalia">Descripción de la anomalía:</label><br>
+		<textarea id="descripcionAnomalia" name="descripcionAnomalia" rows="4" cols="50" required></textarea><br><br>
+
+		<button type="submit">Enviar Reporte</button>
+	</form>
+</div>
+</body>
+</html>
+

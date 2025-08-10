@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+	<h3>Prueba de equipo</h3>
+	<p>complete la tarea y oprima el Boton.</p>
+
+
+	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">
+		<input type="hidden" name="groupName" th:value="${groupName}" />
+		<input type="hidden" name="processKey" th:value="${processKey}" />
+		<input type="hidden" id="horapruebaCompletada" name="horapruebaCompletada" />
+		<label for="pruebaCompletada">Descripción de la prueba:</label><br>
+		<textarea id="pruebaCompletada" name="pruebaCompletada" rows="4" cols="50" required></textarea><br><br>
+		<button type="submit">Prueba completado</button>
+	</form>
+
+	<script>
+        //escuchador al formulario
+        document.getElementById('horapruebaCompletada').addEventListener('change', function() {
+            var fechaActual = new Date();
+            //cuando se cambie el valor del input, se actualiza el valor del input hidden
+            document.getElementById('horapruebaCompletada').value = fechaActual.toString();
+        });
+	</script>
+</div>
+</body>
+</html>

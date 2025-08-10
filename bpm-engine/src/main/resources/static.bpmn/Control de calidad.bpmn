@@ -60,22 +60,22 @@
       <bpmn:incoming>Flow_01ipf64</bpmn:incoming>
       <bpmn:outgoing>Flow_0exkjca</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="InspeccionarProductoDefectuoso" name="Inspeccionar  producto defectoso" camunda:formKey="form-inspeccionar-producto" camunda:candidateGroups="equipoCalidad">
+    <bpmn:userTask id="InspeccionarProductoDefectuoso" name="Inspeccionar  producto defectoso" camunda:formKey="control-calidad/form-inspeccionar-producto" camunda:candidateGroups="equipoCalidad">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0exkjca</bpmn:incoming>
       <bpmn:outgoing>Flow_0rqmap5</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="DeterminarCausaRaiz" name="Determinar causa raíz" camunda:formKey="form-determinar-causa" camunda:candidateGroups="equipoCalidad">
+    <bpmn:userTask id="DeterminarCausaRaiz" name="Determinar causa raíz" camunda:formKey="control-calidad/form-determinar-causa" camunda:candidateGroups="equipoCalidad">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0rqmap5</bpmn:incoming>
       <bpmn:outgoing>Flow_1o4070m</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1tacz02" name="Establecer acción correctiva" camunda:formKey="form-establecer-accion" camunda:candidateGroups="equipoCalidad">
+    <bpmn:userTask id="Activity_1tacz02" name="Establecer acción correctiva" camunda:formKey="control-calidad/form-establecer-accion" camunda:candidateGroups="equipoCalidad">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_1o4070m</bpmn:incoming>
       <bpmn:outgoing>Flow_0l7tyo8</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0cu3sg8" name="Verificar calidad" camunda:formKey="form-verificar-calidad" camunda:candidateGroups="equipoCalidad">
+    <bpmn:userTask id="Activity_0cu3sg8" name="Verificar calidad" camunda:formKey="control-calidad/form-verificar-calidad" camunda:candidateGroups="equipoCalidad">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0l7tyo8</bpmn:incoming>
       <bpmn:outgoing>Flow_1xtkuwh</bpmn:outgoing>
@@ -88,12 +88,12 @@
       <bpmn:incoming>Flow_1j6acjq</bpmn:incoming>
       <bpmn:outgoing>Flow_0pllwq6</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="RecibirAlerta" name="Recibir alerta" camunda:formKey="form-recibir-alerta" camunda:candidateGroups="supervisorProduccion">
+    <bpmn:userTask id="RecibirAlerta" name="Recibir alerta" camunda:formKey="control-calidad/form-recibir-alerta" camunda:candidateGroups="supervisorProduccion">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0holdev</bpmn:incoming>
       <bpmn:outgoing>Flow_01ipf64</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_12bbx3w" name="Avisar Defecto" camunda:formKey="form-Alerta" camunda:candidateGroups="operadorLinea">
+    <bpmn:userTask id="Activity_12bbx3w" name="Avisar Defecto" camunda:formKey="control-calidad/form-Alerta" camunda:candidateGroups="operadorLinea">
       <bpmn:incoming>Flow_0pfw3dt</bpmn:incoming>
       <bpmn:outgoing>Flow_1ylo24g</bpmn:outgoing>
     </bpmn:userTask>

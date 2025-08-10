@@ -10,39 +10,23 @@
     <bpmn:endEvent id="Event_0wxcz95" name="Falla solucionada">
       <bpmn:incoming>Flow_19uf9pz</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_1rvvmot" name="Realizar diagnóstico del fallo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="realizarDiagnostico" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_1rvvmot" name="Realizar diagnóstico del fallo" camunda:formKey="inspeccion-anomalia/form-diagnostico" camunda:candidateGroups="equipoMantenimiento">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_1m5asfy</bpmn:incoming>
       <bpmn:outgoing>Flow_15d8zz8</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1v8ppd8" name="Ejecutar reparación">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="ejecutarReparacion" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_1v8ppd8" name="Ejecutar reparación" camunda:formKey="inspeccion-anomalia/form-reparacion" camunda:candidateGroups="equipoMantenimiento">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_15d8zz8</bpmn:incoming>
       <bpmn:outgoing>Flow_1avzu83</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1p73504" name="Realizar mantenimiento">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="realizarMantenimiento" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_1p73504" name="Realizar mantenimiento" camunda:formKey="inspeccion-anomalia/form-mantenimiento" camunda:candidateGroups="equipoMantenimiento">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_1avzu83</bpmn:incoming>
       <bpmn:outgoing>Flow_1jzqcrr</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_05txn87" name="Realizar prueba funcional">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="realizarPrueba" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_05txn87" name="Realizar prueba funcional" camunda:formKey="inspeccion-anomalia/form-prueba" camunda:candidateGroups="equipoMantenimiento">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_1jzqcrr</bpmn:incoming>
       <bpmn:outgoing>Flow_19uf9pz</bpmn:outgoing>
     </bpmn:userTask>

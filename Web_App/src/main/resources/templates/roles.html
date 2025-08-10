@@ -6,10 +6,15 @@
 <body>
 <h1 th:text="'Proceso: ' + ${processKey}">Proceso</h1>
 <h2>Seleccione su rol para continuar</h2>
-<ul>
+<ul th:if="${processKey == 'ControlCalidad'}">
 	<li><a th:href="@{/rol/operadorLinea/dashboard(processKey=${processKey})}">Operador de Línea</a></li>
 	<li><a th:href="@{/rol/supervisorProduccion/dashboard(processKey=${processKey})}">Supervisor de Producción</a></li>
 	<li><a th:href="@{/rol/equipoCalidad/dashboard(processKey=${processKey})}">Equipo de Calidad</a></li>
+</ul>
+<ul th:if="${processKey == 'InspeccionAnomalia'}">
+	<li><a th:href="@{/rol/operadorLinea/dashboard(processKey=${processKey})}">Operador de Línea</a></li>
+	<li><a th:href="@{/rol/inspectorCalidad/dashboard(processKey=${processKey})}">Inspector de Calidad</a></li>
+	<li><a th:href="@{/rol/equipoMantenimiento/dashboard(processKey=${processKey})}">equipo mantenimiento</a></li>
 </ul>
 </body>
 </html>
