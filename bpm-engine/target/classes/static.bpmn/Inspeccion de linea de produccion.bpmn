@@ -94,6 +94,16 @@
       <bpmn:incoming>Flow_1u1it1e</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:callActivity id="solProblemasCall" name="Solucionar falla" calledElement="solProblemasCall">
+      <bpmn:extensionElements>
+        <camunda:out source="diagnosticoCompletado" target="diagnosticoCompletado" />
+        <camunda:out source="horaDiagnosticoCompletada" target="horaDiagnosticoCompletada" />
+        <camunda:out source="reparacionCompletada" target="reparacionCompletada" />
+        <camunda:out source="horaReparacionCompletada" target="horaReparacionCompletada" />
+        <camunda:out source="mantenimientoCompletado" target="mantenimientoCompletado" />
+        <camunda:out source="horaMantenimientoCompletado" target="horaMantenimientoCompletado" />
+        <camunda:out source="horapruebaCompletada" target="horapruebaCompletada" />
+        <camunda:out source="pruebaCompletada" target="pruebaCompletada" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0aj4d2y</bpmn:incoming>
       <bpmn:outgoing>Flow_1obv2l7</bpmn:outgoing>
     </bpmn:callActivity>

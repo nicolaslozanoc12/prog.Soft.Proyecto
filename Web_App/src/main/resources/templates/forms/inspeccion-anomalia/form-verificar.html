@@ -11,7 +11,7 @@
 		<li><b>Diagnostico:</b> <span th:text="${variables.diagnosticoCompletado.value}"></span> Tiempo:<span th:text="${variables.horaDiagnosticoCompletada.value}"></span></li>
 		<li><b>Reparación:</b> <span th:text="${variables.reparacionCompletada.value}"></span> Tiempo:<span th:text="${variables.horaReparacionCompletada.value}"></span></li>
 		<li><b>Mantenimiento:</b> <span th:text="${variables.mantenimientoCompletado.value}"></span> Tiempo:<span th:text="${variables.horaMantenimientoCompletado.value}"></span></li>
-		<li><b>Prueba:</b> <span th:text="${variables.pruebaCompletada.value}"></span> Tiempo:<span th:text="${variables.pruebaCompletada}"></span></li>
+		<li><b>Prueba:</b> <span th:text="${variables.pruebaCompletada.value}"></span> Tiempo:<span th:text="${variables.horapruebaCompletada.value}"></span></li>
 	</ul>
 
 	<form method="post" th:action="@{/tarea/{id}/completar(id=${taskId})}">

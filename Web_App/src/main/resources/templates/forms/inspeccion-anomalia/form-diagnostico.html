@@ -18,7 +18,7 @@
         document.getElementById('horaDiagnosticoCompletada').addEventListener('change', function() {
             var fechaActual = new Date();
             //cuando se cambie el valor del input, se actualiza el valor del input hidden
-            document.getElementById('horaDiagnosticoCompletada').value = fechaActual.toString();
+            document.getElementById('horaDiagnosticoCompletada').value = fechaActual.toISOString();
         });
 	</script>
 

@@ -19,7 +19,7 @@
         document.getElementById('horaReparacionCompletada').addEventListener('change', function() {
             var fechaActual = new Date();
             //cuando se cambie el valor del input, se actualiza el valor del input hidden
-            document.getElementById('horaReparacionCompletada').value = fechaActual.toString();
+            document.getElementById('horaReparacionCompletada').value = fechaActual.toISOString();
         });
 	</script>
 </div>
